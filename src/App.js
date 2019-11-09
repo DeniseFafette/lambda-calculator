@@ -1,5 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import Display from "./components/DisplayComponents/Display"
+import Numbers from "./components/ButtonComponents/NumberButtons/Numbers"
+import Operators from "./components/ButtonComponents/OperatorButtons/Operators"
+import Specials from "./components/ButtonComponents/SpecialButtons/Specials"
 import "./App.css";
+
 // STEP 4 - import the button and display components
 // Don't forget to import any extra css/scss files you build into the correct component
 
@@ -7,6 +12,9 @@ import "./App.css";
 import Logo from "./components/DisplayComponents/Logo";
 
 function App() {
+  const [display, setDisplay] = useState ('0');
+  const [amount, setAmount] = useState(undefined);
+  const [operator, setOperator] = useState(undefined);
   // STEP 5 - After you get the components displaying using the provided data file, write your state hooks here.
   // Once the state hooks are in place write some functions to hold data in state and update that data depending on what it needs to be doing
   // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
@@ -15,9 +23,22 @@ function App() {
 
   return (
     <div className="container">
-      <Logo />
       <div className="App">
-        {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
+        <div className='app-container'>
+          <Logo />
+          <div className='container-enter'>
+            <Display value={display} />
+          </div>
+          <div className='bigger-container'>
+            <div className='container-sp-num'>
+              <Specials value={specialButtonClick} />
+              <Numbers numberClick={numberButtonClick} />
+            </div>
+            <div className='container-operators'>
+              <Operators operatorClick={operatorButtonClick} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
